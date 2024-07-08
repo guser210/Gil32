@@ -53,10 +53,14 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void maincpp(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define POUT2_Pin GPIO_PIN_5
+#define POUT2_GPIO_Port GPIOA
+#define POUT1_Pin GPIO_PIN_6
+#define POUT1_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
