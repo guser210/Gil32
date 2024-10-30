@@ -55,8 +55,14 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern ADC_HandleTypeDef hadc1;
+extern COMP_HandleTypeDef hcomp2;
+extern DMA_HandleTypeDef hdma_tim1_ch3;
+extern DMA_HandleTypeDef hdma_tim1_ch2;
 extern DMA_HandleTypeDef hdma_tim3_ch1;
+extern DMA_HandleTypeDef hdma_tim3_ch2;
 extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim17;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -142,17 +148,48 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles DMA1 channel 1 interrupt.
+  * @brief This function handles DMA1 channel 2 and channel 3 interrupts.
   */
-void DMA1_Channel1_IRQHandler(void)
+void DMA1_Channel2_3_IRQHandler(void)
 {
-  /* USER CODE BEGIN DMA1_Channel1_IRQn 0 */
+  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 0 */
 
-  /* USER CODE END DMA1_Channel1_IRQn 0 */
+  /* USER CODE END DMA1_Channel2_3_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_tim1_ch2);
+  HAL_DMA_IRQHandler(&hdma_tim1_ch3);
+  /* USER CODE BEGIN DMA1_Channel2_3_IRQn 1 */
+
+  /* USER CODE END DMA1_Channel2_3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DMA1 channel 4, channel 5, channel 6, channel 7 and DMAMUX1 interrupts.
+  */
+void DMA1_Ch4_7_DMAMUX1_OVR_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Ch4_7_DMAMUX1_OVR_IRQn 0 */
+
+  /* USER CODE END DMA1_Ch4_7_DMAMUX1_OVR_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_tim3_ch2);
   HAL_DMA_IRQHandler(&hdma_tim3_ch1);
-  /* USER CODE BEGIN DMA1_Channel1_IRQn 1 */
+  /* USER CODE BEGIN DMA1_Ch4_7_DMAMUX1_OVR_IRQn 1 */
 
-  /* USER CODE END DMA1_Channel1_IRQn 1 */
+  /* USER CODE END DMA1_Ch4_7_DMAMUX1_OVR_IRQn 1 */
+}
+
+/**
+  * @brief This function handles ADC1, COMP1 and COMP2 interrupts (COMP interrupts through EXTI lines 17 and 18).
+  */
+void ADC1_COMP_IRQHandler(void)
+{
+  /* USER CODE BEGIN ADC1_COMP_IRQn 0 */
+
+  /* USER CODE END ADC1_COMP_IRQn 0 */
+  HAL_ADC_IRQHandler(&hadc1);
+  HAL_COMP_IRQHandler(&hcomp2);
+  /* USER CODE BEGIN ADC1_COMP_IRQn 1 */
+
+  /* USER CODE END ADC1_COMP_IRQn 1 */
 }
 
 /**
@@ -167,6 +204,20 @@ void TIM3_IRQHandler(void)
   /* USER CODE BEGIN TIM3_IRQn 1 */
 
   /* USER CODE END TIM3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM17 global interrupt.
+  */
+void TIM17_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM17_IRQn 0 */
+
+  /* USER CODE END TIM17_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim17);
+  /* USER CODE BEGIN TIM17_IRQn 1 */
+
+  /* USER CODE END TIM17_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
